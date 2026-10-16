@@ -5,6 +5,18 @@ from fastapi import FastAPI, HTTPException, Query, status
 from pydantic import BaseModel, ConfigDict, Field
 
 app = FastAPI(title="Employee API", version="1.0.0")
+@app.get("/")
+def root():
+    return {
+        "message": "Welcome to the Employee REST API",
+        "docs": "/docs",
+        "endpoints": [
+            "GET /employees",
+            "GET /employees/{employee_id}",
+            "POST /employees",
+            "PATCH /employees/{employee_id}/status"
+        ]
+    }
 
 EmployeeStatus = Literal["Active", "Inactive"]
 
